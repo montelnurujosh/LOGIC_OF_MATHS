@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Logic Behind Maths — Home</title>
+  <meta name="description" content="Mathematics as philosophy: the Logic Behind Maths series. Dark minimalist site with 25 essays blending math, life, and stoic thought." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d0f;
+      --card:#0f1113;
+      --muted:#9aa2a6;
+      --accent:#d4af37; /* gold */
+      --teal:#2dd4bf;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#050607);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:#e6eef1;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(11,13,15,0.9),rgba(11,13,15,0.6));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02);z-index:40}
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+    .nav{display:flex;align-items:center;gap:18px}
+    .brand{font-weight:700;font-size:18px;letter-spacing:0.6px;display:flex;align-items:center;gap:12px}
+    .brand .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--teal));display:inline-flex;align-items:center;justify-content:center;color:#071018;font-weight:800}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav ul li{font-weight:600;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;padding:56px 0;align-items:start}
+    .hero h1{font-size:40px;line-height:1.02;margin:0 0 14px;font-weight:800}
+    .hero p.lead{color:var(--muted);margin:0 0 20px;font-size:16px}
+    .cta{display:inline-block;padding:12px 18px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#c19d2f);color:#071018;font-weight:700}
+    .card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.01));border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,0.03)}
+    .series-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .chapter{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
+    .chapter h3{margin:0 0 6px;font-size:16px}
+    .chapter p{margin:0;color:var(--muted);font-size:13px}
+    main{padding:40px 0}
+    .content{display:grid;grid-template-columns:1fr 320px;gap:28px}
+    .post{background:transparent}
+    article.post-hero{padding:28px;border-radius:14px;margin-bottom:20px}
+    article h2{margin-top:0;font-size:26px}
+    article .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+    article p{line-height:1.7;color:#dfe9ec}
+    .toc{position:sticky;top:96px}
+    .toc h4{margin:0 0 12px}
+    .toc ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .toc li a{display:block;padding:8px;border-radius:8px;color:var(--muted);font-weight:600}
+    .toc li a.active{background:var(--glass);color:var(--accent)}
+    footer{padding:36px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02)}
+    .contact-form{display:grid;gap:10px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#e6eef1}
+    .small{font-size:13px;color:var(--muted)}
+    /* responsiveness */
+    @media(max-width:980px){.hero{grid-template-columns:1fr;}.content{grid-template-columns:1fr}.toc{position:relative;top:auto}.series-list{grid-template-columns:1fr}.brand{font-size:16px}}
+    /* subtle animations */
+    .fade-in{opacity:0;transform:translateY(8px);animation:fadeUp .6s forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+    pre{background:#071018;padding:12px;border-radius:8px;color:#9dd6c0;overflow:auto}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">𝛌</div>
+        <div>
+          <div style="font-size:14px;">Logic Behind Maths</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Math as philosophy & practice</div>
+        </div>
+      </div>
+      <nav style="margin-left:auto">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#series">Series</a></li>
+          <li><a href="#daily">Daily Life</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="home" class="hero">
+      <div>
+        <h1>Mathematics is not numbers. It’s the hidden logic of life.</h1>
+        <p class="lead">Dive into the philosophy, principles, and daily wisdom of mathematics. Not as a subject — but as a lens to see the world clearer.</p>
+        <a class="cta" href="#series">Begin the Journey →</a>
+
+        <div style="margin-top:20px;display:flex;gap:12px;align-items:center">
+          <div class="card" style="display:flex;gap:12px;align-items:center">
+            <div style="width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:800;color:#071018">⚖️</div>
+            <div>
+              <div style="font-weight:700">The Logic Series</div>
+              <div class="small">25 essays mixing math, life & stoic thought</div>
+            </div>
+          </div>
+          <div class="card small">Dark minimalist vibes • Stoic-philosopher tone • Practical examples</div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px">Latest Chapters</h3>
+        <div class="series-list">
+          <!-- Show first 6 chapters as highlights -->
+          <div class="chapter"><h3>1. Algebra is Balance</h3><p>Life is an equation — find the missing piece of balance.</p></div>
+          <div class="chapter"><h3>2. Probability is Life’s Gamble</h3><p>Every choice is a roll of the dice; learn to play the odds.</p></div>
+          <div class="chapter"><h3>3. Calculus & Growth</h3><p>Understand rates, trends, and the curve of life.</p></div>
+          <div class="chapter"><h3>4. Geometry is Nature’s Design</h3><p>Shapes that build the world, efficiency and beauty.</p></div>
+          <div class="chapter"><h3>5. Infinity & Beyond</h3><p>The horizon we chase but never touch.</p></div>
+          <div class="chapter"><h3>6. Statistics is Truth in Numbers</h3><p>How to read the forest, not just the trees.</p></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="series" style="margin-top:18px">
+      <div class="content">
+        <div>
+          <article class="card post-hero fade-in">
+            <h2>Intro — Math: The Hidden Logic of Life</h2>
+            <div class="meta">Series introduction • Chapter 0</div>
+            <p>Most people think mathematics is numbers, equations, or formulas that belong in classrooms and exams. But let me tell you — <strong>math is much deeper.</strong></p>
+            <p>Math is <em>logic in disguise</em>. It’s the way nature organizes itself, the way choices shape destiny, the way beauty hides in proportions. It’s not just something you solve on paper — it’s something you live every single day.</p>
+            <p>Look around you: the symmetry in a flower, the rhythm of your heartbeat, the chance of winning or losing, the growth of a tree. Mathematics is the code of reality.</p>
+            <p><a href="#chapter-1">Start with Chapter 1 → Algebra is Balance</a></p>
+          </article>
+
+          <!-- Series posts: each post as article with id -->
+
+          <!-- Chapter 1 -->
+          <article id="chapter-1" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>1. Algebra is Balance</h2>
+            <div class="meta">Chapter 1 • Algebra</div>
+            <p>Life is an equation. Every decision, every consequence, every trade we make — it all comes down to balance.</p>
+            <p>Algebra isn’t about solving for “x.” It’s about learning that if you add weight to one side of the scale, you must adjust the other.</p>
+            <p>Think about it: if you spend money, you must earn it back. If you give trust, you expect loyalty in return. If you eat without care, your health must balance the cost. Algebra teaches us fairness — it teaches that life is give and take.</p>
+            <p><em>When we solve for “x,” we’re not just finding a number — we’re finding the missing piece of balance in a situation.</em></p>
+            <p class="small">“An equation means nothing to me unless it expresses a thought of God.” – Ramanujan</p>
+            <p style="margin-top:10px"><a href="#chapter-2">Next → Probability is Life’s Gamble</a></p>
+          </article>
+
+          <!-- Chapter 2 -->
+          <article id="chapter-2" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>2. Probability is Life’s Gamble</h2>
+            <div class="meta">Chapter 2 • Probability</div>
+            <p>Every morning when you step out the door, you’re rolling dice. Will it rain? Will you succeed? Will the risk pay off?</p>
+            <p>Probability is not numbers — it’s destiny whispering in percentages. A coin toss reminds us: sometimes life is 50/50. A lottery shows us: some outcomes are possible, but not likely. Insurance is built on this truth: we live in probabilities, not certainties.</p>
+            <p>The beauty of probability is that it humbles us. It says: “You are not in control of outcomes, only of choices.” Life is not about guaranteeing success — it’s about increasing the odds. When we understand probability, we learn to embrace risk, calculate wisely, and walk boldly into uncertainty.</p>
+            <p class="small">“Chance is the pseudonym God uses when He does not want to sign His name.” – Anatole France</p>
+            <p style="margin-top:10px"><a href="#chapter-3">Next → Calculus & Growth</a></p>
+          </article>
+
+          <!-- Chapter 3 -->
+          <article id="chapter-3" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>3. Calculus & Growth</h2>
+            <div class="meta">Chapter 3 • Calculus</div>
+            <p>Nothing grows in straight lines. Not economies, not relationships, not even trees. Calculus is the mathematics of change — of acceleration, growth, and decay.</p>
+            <p>Derivatives tell us the rate of change — how fast something is moving, improving, or decaying. Integrals tell us the total impact — the accumulation of all those small steps.</p>
+            <p>In life, calculus teaches patience. Because growth is slow at first, then sudden. Decay is invisible, until it’s undeniable. Calculus reminds us: the present is just a snapshot. The real truth is found in the trend.</p>
+            <p class="small">“To understand the phenomena of motion is to understand the phenomena of nature.” – Newton</p>
+            <p style="margin-top:10px"><a href="#chapter-4">Next → Geometry is Nature’s Design</a></p>
+          </article>
+
+          <!-- Chapter 4 -->
+          <article id="chapter-4" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>4. Geometry is Nature’s Design</h2>
+            <div class="meta">Chapter 4 • Geometry</div>
+            <p>Look closely at a snowflake, a seashell, or the spiral of a galaxy. Geometry is everywhere.</p>
+            <p>Triangles, circles, spirals — nature builds with shape, not chance. Bees build hexagons — the most efficient way to store honey. Architects design arches — geometry that resists gravity. Artists chase the golden ratio — a geometry of beauty.</p>
+            <p>Geometry is more than drawing shapes in a notebook — it’s the blueprint of the universe. When we study geometry, we’re unlocking how nature thinks: how it saves energy, how it balances strength and beauty.</p>
+            <p class="small">“God geometrizes continually.” – Plato</p>
+            <p style="margin-top:10px"><a href="#chapter-5">Next → Infinity & Beyond</a></p>
+          </article>
+
+          <!-- Chapter 5 -->
+          <article id="chapter-5" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>5. Infinity & Beyond</h2>
+            <div class="meta">Chapter 5 • Infinity</div>
+            <p>Infinity is not just a number — it’s a paradox. It’s the horizon we chase but never touch. Count as high as you want — there’s always more. Divide as small as you can — there’s always smaller.</p>
+            <p>Infinity humbles us because it reminds us of our limits. But it also inspires us — because it shows that imagination has no ceiling. Infinity is why mathematicians lose sleep, and why philosophers dream.</p>
+            <p class="small">“The infinite! No other question has ever moved so profoundly the spirit of man.” – David Hilbert</p>
+            <p style="margin-top:10px"><a href="#chapter-6">Next → Statistics is Truth in Numbers</a></p>
+          </article>
+
+          <!-- Chapter 6 -->
+          <article id="chapter-6" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>6. Statistics is Truth in Numbers</h2>
+            <div class="meta">Chapter 6 • Statistics</div>
+            <p>Numbers don’t lie — but people can twist them. Statistics is about finding truth in the blur of chaos. Polls measure opinions. Medicine tests cures. Businesses chase trends. Statistics helps us see the forest, not just the trees.</p>
+            <p>But it also warns: be careful. Numbers can be framed. The wise learn to read between the percentages.</p>
+            <p class="small">“Statistics are the triumph of the quantitative method, and the quantitative method is the victory of sterility and death.” – Hilaire Belloc</p>
+            <p style="margin-top:10px"><a href="#chapter-7">Next → Sequences & Patterns of Existence</a></p>
+          </article>
+
+          <!-- Chapter 7 -->
+          <article id="chapter-7" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>7. Sequences & Patterns of Existence</h2>
+            <div class="meta">Chapter 7 • Sequences</div>
+            <p>Life repeats itself. Seasons turn. Days cycle. Generations echo. Sequences are not just numbers in a row — they are existence unfolding. Fibonacci spirals in sunflowers. Rhythms in music. Daily routines.</p>
+            <p>Recognizing sequences teaches us rhythm, discipline, and foresight. It shows us that while life feels random, patterns hide everywhere.</p>
+            <p class="small">“Mathematics is the music of reason.” – James Joseph Sylvester</p>
+            <p style="margin-top:10px"><a href="#chapter-8">Next → Logic: The Skeleton of Thought</a></p>
+          </article>
+
+          <!-- Chapter 8 -->
+          <article id="chapter-8" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>8. Logic: The Skeleton of Thought</h2>
+            <div class="meta">Chapter 8 • Logic</div>
+            <p>Without logic, thought collapses. It is the backbone of mathematics, and the immune system of reason. Logic strips away emotion, bias, and illusion. It forces us to test truth with structure.</p>
+            <p>Logic may sound cold — but it’s liberating. It doesn’t tell us what to think — it teaches us how to think.</p>
+            <p class="small">“Logic is invincible, because in order to combat logic it is necessary to use logic.” – Pierre Boutroux</p>
+            <p style="margin-top:10px"><a href="#chapter-9">Next → Set Theory & The Architecture of Ideas</a></p>
+          </article>
+
+          <!-- Chapter 9 -->
+          <article id="chapter-9" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>9. Set Theory & The Architecture of Ideas</h2>
+            <div class="meta">Chapter 9 • Set Theory</div>
+            <p>At its core, set theory is about belonging. This belongs here. That does not. Some things overlap. It’s simple, yet powerful. Sets build categories, and categories build knowledge.</p>
+            <p>From the clothes in your wardrobe to the ideas in your mind — set theory is quietly organizing your life.</p>
+            <p class="small">“A set is a Many that allows itself to be thought of as a One.” – Georg Cantor</p>
+            <p style="margin-top:10px"><a href="#chapter-10">Next → Number Theory & The Mystical Universe</a></p>
+          </article>
+
+          <!-- Chapter 10 -->
+          <article id="chapter-10" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>10. Number Theory & The Mystical Universe</h2>
+            <div class="meta">Chapter 10 • Number Theory</div>
+            <p>Numbers are not just tools — they are mysteries. Prime numbers hide secrets. The golden ratio shapes beauty. Modular arithmetic runs cryptography. Number theory is less about utility and more about wonder.</p>
+            <p>It’s where math feels closest to poetry, and numbers sing instead of calculate.</p>
+            <p class="small">“God made the integers; all else is the work of man.” – Kronecker</p>
+            <p style="margin-top:10px"><a href="#chapter-11">Next → Chaos Theory & Life’s Uncertainty</a></p>
+          </article>
+
+          <!-- Chapter 11 -->
+          <article id="chapter-11" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>11. Chaos Theory & Life’s Uncertainty</h2>
+            <div class="meta">Chapter 11 • Chaos</div>
+            <p>A butterfly flaps its wings in Brazil, and a tornado rises in Texas. Chaos theory is not disorder — it’s fragile order. Small inputs cause massive ripples.</p>
+            <p>Life feels chaotic, but chaos theory whispers: patterns exist, even in storms. It teaches humility, caution, and awe.</p>
+            <p class="small">“Chaos is merely order waiting to be deciphered.” – José Saramago</p>
+            <p style="margin-top:10px"><a href="#chapter-12">Next → Time, Limits & Approaching the Infinite</a></p>
+          </article>
+
+          <!-- Chapter 12 -->
+          <article id="chapter-12" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>12. Time, Limits & Approaching the Infinite</h2>
+            <div class="meta">Chapter 12 • Limits</div>
+            <p>Limits tell us what we can approach but never touch. Like time — we approach tomorrow, but never stand in it. Like perfection — we can get closer, but never arrive.</p>
+            <p>Limits teach patience, approximation, and acceptance.</p>
+            <p class="small">“A limit is the fence around infinity.” – Anonymous</p>
+            <p style="margin-top:10px"><a href="#chapter-13">Next → Algorithms: Life in Steps</a></p>
+          </article>
+
+          <!-- Chapter 13 -->
+          <article id="chapter-13" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>13. Algorithms: Life in Steps</h2>
+            <div class="meta">Chapter 13 • Algorithms</div>
+            <p>Life is an algorithm. Wake, work, eat, repeat. Algorithms are step-by-step processes that bring order out of chaos. They run our phones, our traffic lights, our lives.</p>
+            <p>But they also warn us: be mindful of your routines — your algorithms — because they shape your destiny.</p>
+            <p class="small">“The algorithm is the poetry of computation.” – Anonymous</p>
+            <p style="margin-top:10px"><a href="#chapter-14">Next → Arithmetic: The Language of Childhood</a></p>
+          </article>
+
+          <!-- Chapter 14 -->
+          <article id="chapter-14" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>14. Arithmetic: The Language of Childhood</h2>
+            <div class="meta">Chapter 14 • Arithmetic</div>
+            <p>The first language we ever learn is numbers. Before words, we understand “one” and “two.” Arithmetic is the foundation of all mathematics. It teaches counting, comparison, and the rhythm of quantity.</p>
+            <p>Simple, yet eternal.</p>
+            <p class="small">“Arithmetic is where numbers start to talk.” – Anonymous</p>
+            <p style="margin-top:10px"><a href="#chapter-15">Next → Linear Algebra & Dimensions of Reality</a></p>
+          </article>
+
+          <!-- Chapter 15 -->
+          <article id="chapter-15" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>15. Linear Algebra & Dimensions of Reality</h2>
+            <div class="meta">Chapter 15 • Linear Algebra</div>
+            <p>Matrices and vectors may seem abstract — but they are the grammar of modern life. They power graphics in video games, shape AI and machine learning, and describe movements in space and physics.</p>
+            <p>Linear algebra teaches us: reality itself can be transformed, rotated, and scaled — if you know the right basis.</p>
+            <p class="small">“Linear algebra is the mathematics of the 21st century.” – Anonymous</p>
+            <p style="margin-top:10px"><a href="#chapter-16">Next → Topology & Shapes of Space</a></p>
+          </article>
+
+          <!-- Chapter 16 -->
+          <article id="chapter-16" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>16. Topology & Shapes of Space</h2>
+            <div class="meta">Chapter 16 • Topology</div>
+            <p>A coffee cup and a donut are the same thing in topology — both have one hole. Topology looks past appearances and focuses on essence. It says: what matters is not the details, but the structure beneath.</p>
+            <p>It’s philosophy, disguised as mathematics.</p>
+            <p class="small">“Topology is rubber-sheet geometry.” – John Milnor</p>
+            <p style="margin-top:10px"><a href="#chapter-17">Next → Information Theory & Communication</a></p>
+          </article>
+
+          <!-- Chapter 17 -->
+          <article id="chapter-17" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>17. Information Theory & Communication</h2>
+            <div class="meta">Chapter 17 • Information Theory</div>
+            <p>Life is noise vs signal. To survive is to extract meaning from chaos. Claude Shannon’s information theory shows how messages travel through noise, how data is compressed, how clarity is preserved.</p>
+            <p>In relationships, in media, in life — we’re always trying to separate noise from truth.</p>
+            <p class="small">“Information is the resolution of uncertainty.” – Claude Shannon</p>
+            <p style="margin-top:10px"><a href="#chapter-18">Next → Game Theory & Human Choices</a></p>
+          </article>
+
+          <!-- Chapter 18 -->
+          <article id="chapter-18" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>18. Game Theory & Human Choices</h2>
+            <div class="meta">Chapter 18 • Game Theory</div>
+            <p>Every move you make is a strategy. Every silence is a play. Game theory studies conflict, cooperation, and negotiation. It explains business, politics, love, and even survival.</p>
+            <p>The prisoner’s dilemma teaches: sometimes selfishness loses, and cooperation wins. Life itself is a game — play wisely.</p>
+            <p class="small">“In life, as in chess, forethought wins.” – Charles Buxton</p>
+            <p style="margin-top:10px"><a href="#chapter-19">Next → Fractals: Beauty in Complexity</a></p>
+          </article>
+
+          <!-- Chapter 19 -->
+          <article id="chapter-19" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>19. Fractals: Beauty in Complexity</h2>
+            <div class="meta">Chapter 19 • Fractals</div>
+            <p>Zoom into a leaf. Zoom further. Patterns repeat endlessly. Fractals are infinite complexity born from simple rules. They remind us: beauty is not simplicity alone — it’s the repetition of complexity that creates awe.</p>
+            <p class="small">“Clouds are not spheres, mountains are not cones, coastlines are not circles.” – Benoit Mandelbrot</p>
+            <p style="margin-top:10px"><a href="#chapter-20">Next → Optimization: Doing More with Less</a></p>
+          </article>
+
+          <!-- Chapter 20 -->
+          <article id="chapter-20" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>20. Optimization: Doing More with Less</h2>
+            <div class="meta">Chapter 20 • Optimization</div>
+            <p>Life is about trade-offs. Energy, time, money — all limited. Optimization is about maximizing results with minimal cost. Nature does it. Businesses do it. Survivors do it. Mathematics makes us efficient.</p>
+            <p class="small">“The best is the enemy of the good.” – Voltaire</p>
+            <p style="margin-top:10px"><a href="#chapter-21">Next → Symmetry: Order & Aesthetics</a></p>
+          </article>
+
+          <!-- Chapter 21 -->
+          <article id="chapter-21" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>21. Symmetry: Order & Aesthetics</h2>
+            <div class="meta">Chapter 21 • Symmetry</div>
+            <p>Why do we find a face beautiful? Why do we admire architecture? Symmetry soothes us. It whispers order, balance, and peace. Mathematics explains beauty — but also shows us that sometimes, imperfection is what makes life interesting.</p>
+            <p class="small">“Symmetry is what we see at a glance.” – Hermann Weyl</p>
+            <p style="margin-top:10px"><a href="#chapter-22">Next → Probability Distributions & Destiny</a></p>
+          </article>
+
+          <!-- Chapter 22 -->
+          <article id="chapter-22" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>22. Probability Distributions & Destiny</h2>
+            <div class="meta">Chapter 22 • Distributions</div>
+            <p>Life is not fair — it is distributed. Some outcomes are common, others rare. Some people win lotteries, most do not. Probability distributions map destiny. They remind us that while chance feels personal, it is really mathematical.</p>
+            <p class="small">“The curve is everywhere.” – Anonymous</p>
+            <p style="margin-top:10px"><a href="#chapter-23">Next → Applied Maths in Nature</a></p>
+          </article>
+
+          <!-- Chapter 23 -->
+          <article id="chapter-23" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>23. Applied Maths in Nature</h2>
+            <div class="meta">Chapter 23 • Applied Maths</div>
+            <p>From the branching of trees to the flight of birds, math models nature. Differential equations explain rivers. Geometry explains shells. Statistics explains genetics. Nature does not “use” math — math describes nature.</p>
+            <p class="small">“The laws of nature are but the mathematical thoughts of God.” – Kepler</p>
+            <p style="margin-top:10px"><a href="#chapter-24">Next → Mathematics of Money & Survival</a></p>
+          </article>
+
+          <!-- Chapter 24 -->
+          <article id="chapter-24" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>24. Mathematics of Money & Survival</h2>
+            <div class="meta">Chapter 24 • Finance</div>
+            <p>Cash is king. But behind cash, there is math. Interest compounds. Inflation erodes. Risk spreads. Survival requires financial literacy — and financial literacy is mathematics in disguise.</p>
+            <p class="small">“Compound interest is the eighth wonder of the world.” – Einstein</p>
+            <p style="margin-top:10px"><a href="#chapter-25">Next → Finale: Mathematics — The Lens of Clarity</a></p>
+          </article>
+
+          <!-- Chapter 25 -->
+          <article id="chapter-25" class="card post fade-in" style="margin-bottom:18px;padding:22px">
+            <h2>25. Finale — Mathematics: The Lens of Clarity</h2>
+            <div class="meta">Chapter 25 • Finale</div>
+            <p>Mathematics is not just knowledge — it’s clarity. It sharpens thought. It forces honesty. It teaches discipline, patience, and humility.</p>
+            <p>When we study mathematics, we’re not just learning numbers. We’re learning how to see the world clearly, without illusions. And that clarity — that is freedom.</p>
+            <p class="small">“The essence of mathematics is not to make simple things complicated, but to make complicated things simple.” – Stan Gudder</p>
+            <p style="margin-top:10px"><a href="#home">Back to Home</a></p>
+          </article>
+
+        </div>
+
+        <!-- Sidebar / TOC -->
+        <aside class="toc card">
+          <h4>Chapters</h4>
+          <ul id="toc-list">
+            <li><a href="#chapter-1">1. Algebra is Balance</a></li>
+            <li><a href="#chapter-2">2. Probability is Life’s Gamble</a></li>
+            <li><a href="#chapter-3">3. Calculus & Growth</a></li>
+            <li><a href="#chapter-4">4. Geometry is Nature’s Design</a></li>
+            <li><a href="#chapter-5">5. Infinity & Beyond</a></li>
+            <li><a href="#chapter-6">6. Statistics is Truth in Numbers</a></li>
+            <li><a href="#chapter-7">7. Sequences & Patterns</a></li>
+            <li><a href="#chapter-8">8. Logic: The Skeleton of Thought</a></li>
+            <li><a href="#chapter-9">9. Set Theory</a></li>
+            <li><a href="#chapter-10">10. Number Theory</a></li>
+            <li><a href="#chapter-11">11. Chaos Theory</a></li>
+            <li><a href="#chapter-12">12. Limits & Time</a></li>
+            <li><a href="#chapter-13">13. Algorithms</a></li>
+            <li><a href="#chapter-14">14. Arithmetic</a></li>
+            <li><a href="#chapter-15">15. Linear Algebra</a></li>
+            <li><a href="#chapter-16">16. Topology</a></li>
+            <li><a href="#chapter-17">17. Information Theory</a></li>
+            <li><a href="#chapter-18">18. Game Theory</a></li>
+            <li><a href="#chapter-19">19. Fractals</a></li>
+            <li><a href="#chapter-20">20. Optimization</a></li>
+            <li><a href="#chapter-21">21. Symmetry</a></li>
+            <li><a href="#chapter-22">22. Distributions</a></li>
+            <li><a href="#chapter-23">23. Applied Maths</a></li>
+            <li><a href="#chapter-24">24. Money & Survival</a></li>
+            <li><a href="#chapter-25">25. Finale</a></li>
+          </ul>
+
+          <div style="height:18px"></div>
+
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#daily">Daily Life</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Daily life -->
+    <section id="daily" style="margin-top:36px" class="card fade-in">
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <h3>Math in Daily Life</h3>
+          <p class="small">Practical sections showing how math appears in everyday domains.</p>
+
+          <article style="margin-top:12px">
+            <h4>Money</h4>
+            <p>Budgeting, investing, saving — all mathematics. Math isn’t just about wealth — it’s about survival and freedom. Understand compound interest, inflation, and simple budgeting rules to protect your future.</p>
+          </article>
+
+          <article style="margin-top:12px">
+            <h4>Football</h4>
+            <p>Angles, speed, stats, probability. Every shot is geometry + physics. Analyze set pieces, expected goals, and player positioning with simple math to level up how you watch the game.</p>
+          </article>
+
+          <article style="margin-top:12px">
+            <h4>Music</h4>
+            <p>Rhythm = fractions. Harmony = ratios. Frequencies = wave maths. Music is math turned into emotion—study patterns to feel the structure behind the sound.</p>
+          </article>
+
+          <article style="margin-top:12px">
+            <h4>Technology</h4>
+            <p>AI, algorithms, data. Behind every app, math whispers. Learn the basics: probability, linear algebra, and statistics to understand the tools shaping the future.</p>
+          </article>
+        </div>
+
+        <aside style="width:300px" class="card">
+          <h4>Resources</h4>
+          <ul style="list-style:none;padding:0;margin:0;line-height:1.6">
+            <li class="small">Desmos — graphing calculator</li>
+            <li class="small">GeoGebra — geometry explorer</li>
+            <li class="small">Khan Academy — beginner-friendly lessons</li>
+            <li class="small">Numberphile — curiosity-driven videos</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" style="margin-top:36px" class="card fade-in">
+      <h3>About</h3>
+      <p>I’ve always believed this — <strong>mathematics is not numbers.</strong> It is not just equations, nor the algorithms we grind through in class. For me, mathematics is <em>logic in motion</em>. It is the hidden rhythm of the universe, the quiet voice that says: “Look deeper, the world has patterns, and truth leaves traces.”</p>
+      <p>So this space is mine — and yours. A place where we talk math not as a subject, but as a philosophy of living. Where every principle is more than a formula, it’s a story.</p>
+    </section>
+
+    <!-- Contact -->
+<section id="contact" style="margin-top:36px" class="card fade-in">
+  <h3>Contact</h3>
+  <p class="small">Math is not mine alone — it’s ours. Let’s decode the logic of life together.</p>
+  
+  <!-- Real Formspree form -->
+  <form action="https://formspree.io/f/mblzlaez" method="POST" class="contact-form">
+    <input type="text" name="name" placeholder="Your name" required />
+    <input type="email" name="_replyto" placeholder="Your email" required />
+    <textarea rows="4" name="message" placeholder="Message" required></textarea>
+
+    <!-- optional: redirect to thank-you page -->
+    <input type="hidden" name="_next" value="thank-you.html">
+
+    <button class="cta" type="submit">Send Message</button>
+  </form>
+</section>
+
+
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+      <div>
+        <div style="font-weight:700">Logic Behind Maths</div>
+        <div class="small">A maths-philosophy project by you — drop your voice in the contact form.</div>
+      </div>
+      <div class="small">© 2025 • Built with logic & style</div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll and TOC active link
+    const tocLinks = Array.from(document.querySelectorAll('#toc-list a'));
+    const posts = tocLinks.map(a=>document.querySelector(a.getAttribute('href')));
+
+    function onScroll(){
+      const offset = window.scrollY + 120;
+      let current = null;
+      for(let i=0;i<posts.length;i++){
+        const el = posts[i];
+        if(!el) continue;
+        if(el.offsetTop <= offset) current = tocLinks[i];
+      }
+      tocLinks.forEach(l=>l.classList.remove('active'));
+      if(current) current.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll);
+
+    // initial animation
+    document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.animationDelay = (i*60)+'ms'})
+
+    // smooth anchor behavior
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href === '#' || href === '#home') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        history.replaceState(null,null,href);
+      })
+    })
+  </script>
+</body>
+</html>
