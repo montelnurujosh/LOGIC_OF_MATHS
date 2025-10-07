@@ -47,3 +47,68 @@ input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);pa
 .fade-in{opacity:0;transform:translateY(8px);animation:fadeUp .6s forwards}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 pre{background:#071018;padding:12px;border-radius:8px;color:#9dd6c0;overflow:auto}
+/* === Math Stories & Legends — Dark Minimalist Style === */
+#math-legends {
+  background-color: #0d0d0d; /* deep dark background */
+  color: #e0e0e0;           /* soft off-white text */
+  font-family: 'Georgia', serif; /* classic, elegant vibe */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  line-height: 1.7;
+}
+
+#math-legends h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #f5d742; /* golden accent for header */
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+#math-legends article {
+  background: #1a1a1a; /* subtle contrast for each story */
+  border-left: 4px solid #f5d742;
+  padding: 25px 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#math-legends article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(245, 215, 66, 0.2);
+}
+
+#math-legends h3 {
+  font-size: 1.5rem;
+  color: #f5d742; /* golden titles */
+  margin-bottom: 15px;
+}
+
+#math-legends p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+}
+
+#math-legends strong {
+  color: #f5d742; /* emphasize key formulas & numbers */
+}
+
+@media (max-width: 768px) {
+  #math-legends {
+    padding: 30px 15px;
+  }
+
+  #math-legends h2 {
+    font-size: 2rem;
+  }
+
+  #math-legends h3 {
+    font-size: 1.3rem;
+  }
+
+  #math-legends p {
+    font-size: 1rem;
+  }
+}

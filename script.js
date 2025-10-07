@@ -26,38 +26,63 @@ document.querySelectorAll('.fade-in').forEach((el, i) => {
 });
 
 // --------------------------
-// Smooth anchor scrolling
+// Smooth anchor scrolling with sticky nav offset
 // --------------------------
+function scrollToTarget(target) {
+  const navHeight = document.querySelector('header').offsetHeight;
+  const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight - 10;
+  window.scrollTo({ top: targetPos, behavior: 'smooth' });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
+  a.addEventListener('click', e => {
     const href = a.getAttribute('href');
     if (href === '#' || href === '#home') return;
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    history.replaceState(null, null, href);
+    if (target) {
+      scrollToTarget(target);
+      history.replaceState(null, null, href);
+    }
   });
 });
 
 // --------------------------
+// Handle page load & back/forward (Math Legends + TOC fix)
+// --------------------------
+function handleHashOnLoad() {
+  const hash = window.location.hash;
+  if (!hash) return;
+  const target = document.querySelector(hash);
+  if (target) {
+    setTimeout(() => {
+      scrollToTarget(target);
+      tocLinks.forEach(l => l.classList.remove('active'));
+      const activeLink = tocLinks.find(a => a.getAttribute('href') === hash);
+      if (activeLink) activeLink.classList.add('active');
+    }, 50);
+  }
+}
+
+window.addEventListener('pageshow', handleHashOnLoad);
+window.addEventListener('popstate', handleHashOnLoad);
+
+// --------------------------
 // Formspree submission + redirect
 // --------------------------
-const form = document.querySelector('.contact-form'); // make sure your form has class="contact-form"
+const form = document.querySelector('.contact-form');
 
 if (form) {
   form.addEventListener('submit', async function (e) {
-    e.preventDefault(); // prevent default submit
+    e.preventDefault();
     const data = new FormData(form);
-
     try {
       const response = await fetch(form.action, {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
       });
-
       if (response.ok) {
-        // redirect manually
         window.location.href = 'https://logic-of-maths.netlify.app/thank-you.html';
       } else {
         alert('Form submission error');
